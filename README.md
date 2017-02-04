@@ -85,7 +85,8 @@ vue cli -> root/index.html
 ```
 Demo code<br />
 -------------
-please fill the configuration option<br />
+Please fill the configuration option<br />
+<br />
 title: String, // upload components title<br />
 picOption: Function, // click picture call back<br />
 getFiles: String, // get uploaded img url (return array)<br />
