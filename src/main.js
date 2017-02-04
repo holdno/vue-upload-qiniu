@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import App from './App'
 import VueResource from 'vue-resource'
 import Vuex from 'vuex'
+import index from './pages/create/create'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
