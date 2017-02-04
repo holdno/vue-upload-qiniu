@@ -9,6 +9,15 @@ This is my first public product and my first English document<br />
 Just for fun<br />
 : P<br />
 <br />
+This component does not guarantee the codes can be run properly after you copy them due to it relies on the module relation.
+As it is a component, you can reference the "vue-upload-qiniu" component to your own project according to the "README" example.<br />
+``` html
+<holdno-upload></holdno-upload>
+<script>
+// get vue-upload-qiniu components
+import holdnoUpload from '../../components/holdnoUpload'
+</script>
+```
 The useful files are in this directory<br />
 /src/pages/create/create.vue<br />
 <br />
