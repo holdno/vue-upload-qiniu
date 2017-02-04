@@ -1,11 +1,13 @@
 ![holdno logo](https://img.holdno.com/apple-touch-icon-114x114-precomposed.png)
-Holdno：vue-upload-qiniu
+Holdno:vue-upload-qiniu
 ===================
 This is a [vue2](https://cn.vuejs.org/) component product<br />
 You can use it in vue**2** to upload some pictures to your [Qiniu](https://www.qiniu.com/) space<br />
 This is my first public product and my first English document<br />
-Not for anything else just for fun<br />
+Just for fun<br />
 : P<br />
+The files that are useful to you are in this directory<br />
+/src/pages/create/create.vue<br />
 <br />
 vue upload component by Qiniu js-sdk<br />
 -------------
@@ -39,6 +41,7 @@ click [here](https://cn.vuejs.org/)<br />
 Clone vue-upload-qiniu<br />
 ``` shell
 git clone git@github.com:holdnoWby/vue-upload-qiniu.git
+https://github.com/holdnoWby/vue-upload-qiniu.git
 ```
 Config<br />
 -------------
@@ -137,5 +140,5 @@ Demo show
 
 Demo view
 --------------
-Is developing </br>
-If developed you can open it in here
+Still developing </br>
+When completed you can open here
