@@ -30,7 +30,7 @@ You can search 'install npm' by [Baidu](https://www.baidu.com/s?ie=utf-8&f=8&rsv
 <br />
 Install webpack<br />
 ``` shell
-$ npm install webpack -g<br />
+$ npm install webpack -g
 ```
 
 Install vue<br />
@@ -38,7 +38,7 @@ click [here](https://cn.vuejs.org/)<br />
 <br />
 Clone vue-QiniuUpload<br />
 ``` shell
-git clone git@github.com:holdnoWby/vue-upload-qiniu.git<br />
+git clone git@github.com:holdnoWby/vue-upload-qiniu.git
 ```
 Config<br />
 -------------
@@ -106,3 +106,8 @@ Demo show
 ![demo pic](https://img.holdno.com/F0DE709B-8D58-418A-AE7E-A2C316A2E934.png)</br>
 </br>
 ![demo pic](https://img.holdno.com/BD68A2E9-460F-4E1C-96D2-86B36FB413E4.png)
+
+Demo view
+--------------
+Is developing 
+If development is complete you can open it in here
