@@ -85,7 +85,13 @@ vue cli -> root/index.html
 ```
 Demo code<br />
 -------------
-please fill the configuration option
+please fill the configuration option<br />
+title: String, // upload components title<br />
+picOption: Function, // click picture call back<br />
+getFiles: String, // get uploaded img url (return array)<br />
+uploadingText: String, // uploading show text<br />
+domain: String, // qiniu space bind url<br />
+uptokenUrl: String // get qiniu upload token (http request url)<br />
 ``` html
 <template>
   <div>
