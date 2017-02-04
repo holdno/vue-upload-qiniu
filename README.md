@@ -36,7 +36,7 @@ $ npm install webpack -g
 Install vue<br />
 click [here](https://cn.vuejs.org/)<br />
 <br />
-Clone vue-QiniuUpload<br />
+Clone vue-upload-qiniu<br />
 ``` shell
 git clone git@github.com:holdnoWby/vue-upload-qiniu.git
 ```
@@ -49,6 +49,33 @@ let webpackConfig = {
     "Qiniu": "Qiniu"
   }
 }
+```
+
+Requirements (after annotation:upload)
+-------------
+vue cli -> root/index.html
+``` html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <link rel="apple-touch-icon-precomposed" href="/static/img/apple-touch-icon-114x114-precomposed.png">
+    <title>集合云</title>
+    <link rel="stylesheet" href="/static/css/font-awesome-4.5.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/holdno.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <!--upload-->
+    <script src="http://cdn.staticfile.org/Plupload/2.1.1/plupload.full.min.js"></script>
+    <script src="http://cdn.staticfile.org/qiniu-js-sdk/1.0.14-beta/qiniu.min.js"></script>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
 ```
 Demo code<br />
 -------------
