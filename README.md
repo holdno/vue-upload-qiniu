@@ -120,11 +120,11 @@ export default {
     // click pictures call back
     picOption (files, index) {
       console.log(files)
-      this.files = files
     },
     // get uploaded img url (files: array)
     getFiles (files) {
       console.log(files)
+      this.files = files
     }
   }
 }
