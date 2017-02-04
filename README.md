@@ -79,6 +79,7 @@ vue cli -> root/index.html
 ```
 Demo code<br />
 -------------
+place complete the configuration item
 ``` html
 <template>
   <div>
