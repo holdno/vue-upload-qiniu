@@ -4,7 +4,7 @@ Holdno:vue-upload-qiniu
 Attention:This project uses the uploading service of Qiniu,BUT it is NOT the official product of Qiniu Inc.</br>
 </br>
 This is a [vue2](https://cn.vuejs.org/) component project<br />
-You can use it in vue**2** to upload some pictures to your [Qiniu](https://www.qiniu.com/) space<br />
+You can use this component in vue**2** for uploading some pictures to your own [Qiniu](https://www.qiniu.com/) space<br />
 This is my first public project and my first English document<br />
 Just for fun<br />
 : P<br />
