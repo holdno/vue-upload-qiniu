@@ -1,16 +1,16 @@
 ![holdno logo](https://img.holdno.com/apple-touch-icon-114x114-precomposed.png)
 Holdno:vue-upload-qiniu
 ===================
-Attention:The project is only with the qiniu service, Not qiniu development</br>
+Attention:This project uses the uploading service of Qiniu,But it is Not the official product of Qiniu Inc.</br>
 </br>
-This is a [vue2](https://cn.vuejs.org/) component product<br />
+This is a [vue2](https://cn.vuejs.org/) components project<br />
 You can use it in vue**2** to upload some pictures to your [Qiniu](https://www.qiniu.com/) space<br />
-This is my first public product and my first English document<br />
+This is my first public project and my first English document<br />
 Just for fun<br />
 : P<br />
 <br />
-This component does not guarantee the codes can be run properly after you copy them due to it relies on the module relation.
-As it is a component, you can reference the "vue-upload-qiniu" component to your own project according to the "README" example.<br />
+This components does not guarantee the codes can be run properly after you copy them due to it relies on the module relation.
+As it is a components, you can reference the "vue-upload-qiniu" components to your own project according to the "README" example.<br />
 ``` html
 <holdno-upload></holdno-upload>
 <script>
@@ -21,7 +21,7 @@ import holdnoUpload from '../../components/holdnoUpload'
 The useful files are in this directory<br />
 /src/pages/create/create.vue<br />
 <br />
-vue upload component by Qiniu js-sdk<br />
+vue upload components by Qiniu js-sdk<br />
 -------------
 <br />
 >**Dependent module:**<br />
@@ -57,7 +57,7 @@ https://github.com/holdnoWby/vue-upload-qiniu.git
 ```
 Config<br />
 -------------
-vi product/build/webpack.base.conf.js<br />
+vi project/build/webpack.base.conf.js<br />
 ``` javascript
 let webpackConfig = {
   externals: {
@@ -100,8 +100,8 @@ title: String, // upload components title<br />
 picOption: Function, // click picture call back<br />
 getFiles: String, // get uploaded img url (return array)<br />
 uploadingText: String, // uploading show text<br />
-domain: String, // qiniu space bind url<br />
-uptokenUrl: String // get qiniu upload token (http request url)<br />
+domain: String, // Qiniu space bind url<br />
+uptokenUrl: String // get Qiniu upload token (http request url)<br />
 ``` html
 <template>
   <div>
