@@ -1,6 +1,8 @@
 ![holdno logo](https://img.holdno.com/apple-touch-icon-114x114-precomposed.png)
 Holdno:vue-upload-qiniu
 ===================
+Attention:The project is only with the qiniu service, Not qiniu development</br>
+</br>
 This is a [vue2](https://cn.vuejs.org/) component product<br />
 You can use it in vue**2** to upload some pictures to your [Qiniu](https://www.qiniu.com/) space<br />
 This is my first public product and my first English document<br />
