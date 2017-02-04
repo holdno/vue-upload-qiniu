@@ -159,5 +159,5 @@ Demo show
 
 Demo view
 --------------
-Still developing </br>
-When completed you can open here
+This project still under development </br>
+When it is completed you can open it here.
