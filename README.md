@@ -137,4 +137,4 @@ Demo show
 Demo view
 --------------
 Is developing </br>
-If development is complete you can open it in here
+If developed you can open it in here
