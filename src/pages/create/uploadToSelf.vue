@@ -1,10 +1,10 @@
 <template>
   <div>
     <holdno-upload 
-      title="图片上传" 
+      title="图片上传"
       :picOption="picOption" 
       getFiles="getFiles"
-      domain="http://localhost:8002/expoApi/Wap/Uploader"
+      domain="your service url"
     ></holdno-upload>
   </div>
 </template>

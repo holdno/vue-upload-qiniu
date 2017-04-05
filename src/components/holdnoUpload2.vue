@@ -59,13 +59,13 @@ export default {
     this.$nextTick(() => {
       let that = this
       this.uploader = new PL.Uploader({
-        browse_button : 'pickfiles', //触发文件选择对话框的按钮，为那个元素id
+        browse_button : 'pickfiles', // 触发文件选择对话框的按钮，为那个元素id
         container: 'container', // 上传区域DOM ID，默认是browser_button的父元素，
-        url : that.domain, //服务器端的上传页面地址
-        max_file_size: '10mb',
-        max_retries: 3,
+        url : that.domain, // 服务器端的上传页面地址
+        max_file_size: '10mb', // 上传文件的大小限制
+        max_retries: 3, // 上传失败后尝试重试的次数
         auto_start: true, // 选择文件后自动上传，若关闭需要自己绑定事件触发上传
-        filters : [
+        filters : [ // 上传文件类型限制
           {
             title : "Image",
             extensions : "jpg,jpeg,gif,png"
@@ -95,6 +95,7 @@ export default {
         console.log(file)
         console.log(info)
         // 在这里对服务器返回的信息进行处理
+        // info为服务器返回的信息
         let url = window.JSON.parse(info.response).files[0].path
         // 确保url被添加到files数组中界面才会显示已经上传的图片
         that.files.push(url)
@@ -110,6 +111,7 @@ export default {
         setTimeout(() => {
           let dom = this.$el.querySelector('#container input')
           this.inputId = dom.getAttribute('id')
+          // 自动上传方法 如果不需要自动上传请注释掉下面这段 并在自己业务处调用this.uploader.start()
           dom.addEventListener('change', () => {
             setTimeout(() => {
               this.uploader.start()
