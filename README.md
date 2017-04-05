@@ -19,7 +19,7 @@ import holdnoUpload from '../../components/holdnoUpload'
 </script>
 ```
 The useful files are in this directory<br />
-/src/pages/create/create.vue<br />
+/src/pages/create/uploadToQiniu.vue<br />
 <br />
 vue upload component by Qiniu js-sdk<br />
 -------------
