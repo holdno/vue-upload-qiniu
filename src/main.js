@@ -5,13 +5,15 @@ import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
 import VueResource from 'vue-resource'
-import index from './pages/create/create'
+import qiniu from './pages/qiniu/uploadToQiniu'
+import selfserver from './pages/self/uploadToSelf'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
 const routes = [
-  { path: '/', component: index }
+  { path: '/', component: qiniu },
+  { path: '/self', component: selfserver}
 ]
 
 const router = new VueRouter({
@@ -19,7 +21,6 @@ const router = new VueRouter({
 })
 
 FastClick.attach(document.body)
-
 
 /* eslint-disable no-new */
 new Vue({
