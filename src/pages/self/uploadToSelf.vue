@@ -4,7 +4,8 @@
       title="图片上传"
       :picOption="picOption" 
       getFiles="getFiles"
-      domain="your service url"
+      domain="http://localhost:8002/expoApi/Wap/Uploader"
+      :files="files"
     ></holdno-upload>
   </div>
 </template>
@@ -19,13 +20,15 @@ export default {
   },
   data () {
     return {
-      files: [],
+      files: []
     }
   },
   methods: {
     // click pictures call back
     picOption (files, index) {
       console.log(files)
+      // 删除图片
+      // this.files.splice(index, 1)
     },
     // get uploaded img url (files: array)
     getFiles (files) {

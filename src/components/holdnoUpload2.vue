@@ -41,19 +41,17 @@ export default {
     title: String, // upload components title
     picOption: Function, // click picture call back
     getFiles: String, // get uploaded img url (return array)
-    uploadingText: String, // uploading show text
     domain: String, // qiniu space bind url
-    uptokenUrl: String // get qiniu upload token (http request url)
+    files: Array
   },
   data () {
     return {
-      files: [], // save uploaded img url
       uploading: '', // uploading show text
       inputId: '',
       uploader: ''
     }
   },
-  created () {
+  mounted () {
     console.log('created')
     // 等待DOM渲染完成后执行
     this.$nextTick(() => {
@@ -120,6 +118,11 @@ export default {
         }, 20)
       })
     })
+  },
+  methods: {
+    uploadFiles (id) {
+      this.$el.querySelector('#' + id).click()
+    }
   }
 }
 </script>
