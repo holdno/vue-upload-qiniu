@@ -99,8 +99,9 @@ Please fill the configuration option<br />
 title: String // upload component title<br />
 picOption: Function // click picture call back<br />
 getFiles: Function // get uploaded img url (return array)<br />
-overMax: Function // morethan the max upload num
-max: Number // max upload num
+overMax: Function // morethan the max upload num<br />
+max: Number // max upload num<br />
+files: Array // uploaded url<br />
 uploadingText: String, // uploading show text<br />
 domain: String, // Qiniu space bind url<br />
 uptokenUrl: String // get Qiniu upload token (http request url)<br />
@@ -116,6 +117,7 @@ uptokenUrl: String // get Qiniu upload token (http request url)<br />
       :getFiles="getFiles"
       :overMax="overMax"
       :max="9"
+      :files="files"
       uploadingText="上传中..." 
       domain="https://img.holdno.com" 
       uptokenUrl="/Api/gettoken"
