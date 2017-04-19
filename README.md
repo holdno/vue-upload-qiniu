@@ -96,9 +96,11 @@ Demo code<br />
 -------------
 Please fill the configuration option<br />
 <br />
-title: String, // upload component title<br />
-picOption: Function, // click picture call back<br />
-getFiles: String, // get uploaded img url (return array)<br />
+title: String // upload component title<br />
+picOption: Function // click picture call back<br />
+getFiles: Function // get uploaded img url (return array)<br />
+overMax: Function // morethan the max upload num
+max: Number // max upload num
 uploadingText: String, // uploading show text<br />
 domain: String, // Qiniu space bind url<br />
 uptokenUrl: String // get Qiniu upload token (http request url)<br />
@@ -111,7 +113,9 @@ uptokenUrl: String // get Qiniu upload token (http request url)<br />
     <holdno-upload 
       title="图片上传" 
       :picOption="picOption" 
-      getFiles="getFiles" 
+      :getFiles="getFiles"
+      :overMax="overMax"
+      :max="9"
       uploadingText="上传中..." 
       domain="https://img.holdno.com" 
       uptokenUrl="/Api/gettoken"
@@ -141,6 +145,10 @@ export default {
     getFiles (files) {
       console.log(files)
       this.files = files
+    },
+    // alert user morethan the max upload num
+    overMax () {
+      // alert('morethan max')
     }
   }
 }
