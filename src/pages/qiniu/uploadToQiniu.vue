@@ -3,9 +3,10 @@
     <holdno-upload 
       title="图片上传" 
       :picOption="picOption" 
-      getFiles="getFiles" 
-      uploadingText="上传中..." 
-      domain="https://img.holdno.com" 
+      :getFiles="getFiles" 
+      :overMax="overMax"
+      :max="9"
+      domain="https://img.holdno.com"
       uptokenUrl="/Api/gettoken"
     ></holdno-upload>
   </div>
@@ -33,6 +34,9 @@ export default {
     getFiles (files) {
       console.log(files)
       this.files = files
+    },
+    overMax () {
+      // 提醒用户超出上传上限
     }
   }
 }

@@ -7,7 +7,7 @@
             <div class="weui-uploader__title">
               {{title}} <font color="#999">{{uploading}}</font>
             </div>
-            <div class="weui-uploader__info">{{files.length}}</div>
+            <div class="weui-uploader__info">{{files.length}}{{max ? '/' + max : ''}}</div>
           </div>
           <div class="weui-uploader__bd">
             <div class="weui-uploader__files" id="uploaderFiles">
@@ -40,9 +40,11 @@ export default {
   props: {
     title: String, // upload components title
     picOption: Function, // click picture call back
-    getFiles: String, // get uploaded img url (return array)
+    getFiles: Function, // get uploaded img url (return array)
+    overMax: Function,
     domain: String, // qiniu space bind url
-    files: Array
+    files: Array,
+    max: Number
   },
   data () {
     return {
@@ -55,11 +57,10 @@ export default {
     console.log('created')
     // 等待DOM渲染完成后执行
     this.$nextTick(() => {
-      let that = this
       this.uploader = new PL.Uploader({
         browse_button : 'pickfiles', // 触发文件选择对话框的按钮，为那个元素id
         container: 'container', // 上传区域DOM ID，默认是browser_button的父元素，
-        url : that.domain, // 服务器端的上传页面地址
+        url : this.domain, // 服务器端的上传页面地址
         max_file_size: '10mb', // 上传文件的大小限制
         max_retries: 3, // 上传失败后尝试重试的次数
         auto_start: true, // 选择文件后自动上传，若关闭需要自己绑定事件触发上传
@@ -72,6 +73,11 @@ export default {
       })
       // 添加文件后触发
       this.uploader.bind('FilesAdded', (up, files) => {
+        if(files.length > this.max || files.length + this.files.length > this.max){
+          console.log('上传图片不能超过'+ this.max +'张')
+          this.overMax()
+          return false
+        }
         for (let i in files) {
           console.log('fileName:' + files[i].name)
           console.log('fileSize:' + files[i].size)
@@ -96,13 +102,13 @@ export default {
         // info为服务器返回的信息
         let url = window.JSON.parse(info.response).files[0].path
         // 确保url被添加到files数组中界面才会显示已经上传的图片
-        that.files.push(url)
+        this.files.push(url)
       })
       // 文件上传结束回调
       this.uploader.bind('UploadComplete', (up, files) => {
         console.log('uploadComplete')
         console.log(files)
-        that.$emit(this.getFiles, this.files)
+        this.getFiles(this.files)
       })
       this.uploader.init()
       this.$nextTick(() => {

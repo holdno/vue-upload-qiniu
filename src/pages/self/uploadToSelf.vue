@@ -2,10 +2,12 @@
   <div>
     <holdno-upload 
       title="图片上传"
-      :picOption="picOption" 
-      getFiles="getFiles"
-      domain="http://localhost:8002/expoApi/Wap/Uploader"
+      :picOption="picOption"
+      :getFiles="getFiles"
+      domain="UploadUrl"
       :files="files"
+      :max="9"
+      :overMax="overMax"
     ></holdno-upload>
   </div>
 </template>
@@ -34,6 +36,9 @@ export default {
     getFiles (files) {
       console.log(files)
       this.files = files
+    },
+    overMax () {
+      // 提醒用户超出上传上限
     }
   }
 }

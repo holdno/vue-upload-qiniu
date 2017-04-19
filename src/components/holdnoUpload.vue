@@ -7,7 +7,7 @@
             <div class="weui-uploader__title">
               {{title}} <font color="#999">{{uploading}}</font>
             </div>
-            <div class="weui-uploader__info">{{files.length}}</div>
+            <div class="weui-uploader__info">{{files.length}}{{max ? '/' + max : ''}}</div>
           </div>
           <div class="weui-uploader__bd">
             <div class="weui-uploader__files" id="uploaderFiles">
@@ -41,14 +41,14 @@ export default {
   props: {
     title: String, // upload components title
     picOption: Function, // click picture call back
-    getFiles: String, // get uploaded img url (return array)
-    uploadingText: String, // uploading show text
+    getFiles: Function, // get uploaded img url (return array)
+    overMax: Function,
     domain: String, // qiniu space bind url
-    uptokenUrl: String // get qiniu upload token (http request url)
+    uptokenUrl: String, // get qiniu upload token (http request url)
+    max: Number
   },
   data () {
     return {
-      files: [], // save uploaded img url
       uploading: '', // uploading show text
       inputId: ''
     }
@@ -72,11 +72,10 @@ export default {
       }, 500)
     },
     upload () {
-      let that = this
       let setting = {
         runtimes: 'html5,flash,html4',    // 上传模式,依次退化
         browse_button: 'pickfiles',       // 上传选择的点选按钮，**必需**
-        uptoken_url: that.uptokenUrl,        // Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+        uptoken_url: this.uptokenUrl,        // Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
         // uptoken: '',
         // 若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
         // uptoken_func: function(file){    // 在需要获取uptoken时，该方法会被调用
@@ -84,7 +83,7 @@ export default {
         // },
         unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
         // save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
-        domain: that.domain,   // bucket 域名，下载资源时用到，**必需**
+        domain: this.domain,   // bucket 域名，下载资源时用到，**必需**
         get_new_uptoken: false,  // 设置上传文件的时候是否每次都重新获取新的token
         container: 'container',           // 上传区域DOM ID，默认是browser_button的父元素，
         max_file_size: '10mb',           // 最大文件体积限制
@@ -96,8 +95,15 @@ export default {
         auto_start: true,                 // 选择文件后自动上传，若关闭需要自己绑定事件触发上传
         init: {
           FilesAdded (up, files) {
-            console.log(files)
-            that.uploading = that.uploadingText
+            if(files.length > this.max || files.length + this.files.length > this.max){
+              console.log('上传图片不能超过'+ this.max +'张')
+              this.overMax()
+              return false
+            }
+            for (let i in files) {
+              console.log('fileName:' + files[i].name)
+              console.log('fileSize:' + files[i].size)
+            }
           },
           BeforeUpload (up, file) {
             // 每个文件上传前,处理相关的事情
@@ -105,7 +111,13 @@ export default {
           },
           UploadProgress (up, file) {
             // 每个文件上传时,处理相关的事情
-            console.log(file)
+            console.log('progress:' + file.percent + '%')
+            if(file.percent >= 0){
+              this.uploading = file.percent + '%'
+            }
+            if(file.percent == 100){
+              this.uploading = ''
+            }
           },
           FileUploaded (up, file, info) {
             // 每个文件上传成功后,处理相关的事情
@@ -118,7 +130,7 @@ export default {
             let domain = up.getOption('domain')
             let res = window.JSON.parse(info)
             let sourceLink = domain + '/' + res.key // 获取上传成功后的文件的Url
-            that.files.push(sourceLink)
+            this.files.push(sourceLink)
           },
           Error (up, err, errTip) {
             // 上传出错时,处理相关的事情
@@ -127,11 +139,10 @@ export default {
           UploadComplete () {
             // 队列文件处理完毕后,处理相关的事情
             // 上传完成后改回上传按钮Icon
-            that.uploading = ''
             // 向父组件返回上传信息
-            that.$emit(this.getFiles, this.files)
+            this.getFiles(this.files)
             // reset components
-            that.uploadInit()
+            this.uploadInit()
           },
           Key (up, file) {
             // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
