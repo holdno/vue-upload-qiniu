@@ -94,8 +94,9 @@ Demo code<br />
 title: String // 组件标题<br />
 picOption: Function // 点击图片执行的回调方法<br />
 getFiles: Function // 图片上传完成后将图片信息返回的方法<br />
-overMax: Function // 超出允许上传数量的回调方法
-max: Number // 允许上传的最大数量
+overMax: Function // 超出允许上传数量的回调方法<br />
+max: Number // 允许上传的最大数量<br />
+files: Array // 图片url保存数组<br />
 domain: String // 七牛空间名<br />
 uptokenUrl: String // 获取七牛uptoken的后端地址<br />
 ``` html
@@ -107,6 +108,7 @@ uptokenUrl: String // 获取七牛uptoken的后端地址<br />
       :getFiles="getFiles" 
       :overMax="overMax"
       :max="9"
+      :files="files"
       domain="https://img.holdno.com" 
       uptokenUrl="/Api/gettoken"
     ></holdno-upload>
