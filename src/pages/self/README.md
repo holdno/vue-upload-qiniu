@@ -33,11 +33,9 @@ vue upload component by Plupload<br />
 > - webpack<br />
 > - vue.js<br />
 > - Plupload<br />
-> - qiniu-js-sdk<br />
 
 >**需要在index.html中引入:**<br />
 > - http://cdn.staticfile.org/Plupload/2.1.1/plupload.full.min.js<br />
-> - http://cdn.staticfile.org/qiniu-js-sdk/1.0.14-beta/qiniu.min.js<br />
 
 
 开始<br />
@@ -75,7 +73,6 @@ vue cli -> root/index.html
     <div id="app"></div>
     <!--upload-->
     <script src="http://cdn.staticfile.org/Plupload/2.1.1/plupload.full.min.js"></script>
-    <script src="http://cdn.staticfile.org/qiniu-js-sdk/1.0.14-beta/qiniu.min.js"></script>
     <!-- built files will be auto injected -->
   </body>
 </html>
@@ -86,16 +83,20 @@ Demo code<br />
 <br />
 title: String, // 组件标题<br />
 picOption: Function, // 点击图片执行的回调方法<br />
-getFiles: String, // 图片上传完成后将图片信息返回的方法<br />
-domain: String, // 接收上传图片的域名<br />
+getFiles: Function, // 图片上传完成后将图片信息返回的方法<br />
+overMax: Function // 超出上传数量回调方法<br />
+max: Number // 允许上传的图片数量<br />
+domain: String // 接收图片上传的url<br />
 ``` html
 <template>
   <div>
     <holdno-upload 
       title="图片上传" 
       :picOption="picOption" 
-      getFiles="getFiles"
-      domain="your service url" 
+      :getFiles="getFiles"
+      :overMax="overMax"
+      :max="9"
+      domain="url"
     ></holdno-upload>
   </div>
 </template>
@@ -122,6 +123,10 @@ export default {
     getFiles (files) {
       console.log(files)
       this.files = files
+    }
+    // alert morethan the max upload num
+    overMax () {
+      //alert()
     }
   }
 }
