@@ -91,11 +91,12 @@ Demo code<br />
 -------------
 这些配置项都需要填写<br />
 <br />
-title: String, // 组件标题<br />
-picOption: Function, // 点击图片执行的回调方法<br />
-getFiles: String, // 图片上传完成后将图片信息返回的方法<br />
-uploadingText: String, // 上传中提示文案<br />
-domain: String, // 七牛空间名<br />
+title: String // 组件标题<br />
+picOption: Function // 点击图片执行的回调方法<br />
+getFiles: Function // 图片上传完成后将图片信息返回的方法<br />
+overMax: Function // 超出允许上传数量的回调方法
+max: Number // 允许上传的最大数量
+domain: String // 七牛空间名<br />
 uptokenUrl: String // 获取七牛uptoken的后端地址<br />
 ``` html
 <template>
@@ -103,8 +104,9 @@ uptokenUrl: String // 获取七牛uptoken的后端地址<br />
     <holdno-upload 
       title="图片上传" 
       :picOption="picOption" 
-      getFiles="getFiles" 
-      uploadingText="上传中..." 
+      :getFiles="getFiles" 
+      :overMax="overMax"
+      :max="9"
       domain="https://img.holdno.com" 
       uptokenUrl="/Api/gettoken"
     ></holdno-upload>
@@ -133,6 +135,10 @@ export default {
     getFiles (files) {
       console.log(files)
       this.files = files
+    }
+    // alert morethan the max upload num
+    overMax () {
+      // alert
     }
   }
 }
