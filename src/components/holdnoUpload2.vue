@@ -12,7 +12,7 @@
           <div class="weui-uploader__bd">
             <div class="weui-uploader__files" id="uploaderFiles">
               <div v-for="(item, index) in files">
-                <div class="weui-uploader__file" @click="picOption(files, index)" :index="index" :id="item">
+                <div class="weui-uploader__file" @click="openPicOption(files, index)" :index="index" :id="item">
                   <img class="weui-uploader__img" :src="item"/>
                 </div>
               </div>
@@ -39,9 +39,9 @@ export default {
   name: 'holdnoUpload2',
   props: {
     title: String, // upload components title
-    picOption: Function, // click picture call back
-    getFiles: Function, // get uploaded img url (return array)
-    overMax: Function,
+    picOption: String, // click picture call back
+    getFiles: String, // get uploaded img url (return array)
+    overMax: String,
     domain: String, // qiniu space bind url
     files: Array,
     max: Number
@@ -108,7 +108,8 @@ export default {
       this.uploader.bind('UploadComplete', (up, files) => {
         console.log('uploadComplete')
         console.log(files)
-        this.getFiles(this.files)
+        this.$emit(this.getFiles, this.files)
+        // this.getFiles(this.files)
       })
       this.uploader.init()
       this.$nextTick(() => {
@@ -128,6 +129,9 @@ export default {
   methods: {
     uploadFiles (id) {
       this.$el.querySelector('#' + id).click()
+    },
+    openPicOption (files, index) {
+      this.$emit(this.picOption, files, index)
     }
   }
 }
