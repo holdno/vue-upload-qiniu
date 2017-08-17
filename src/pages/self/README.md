@@ -1,6 +1,6 @@
 ![holdno logo](https://img.holdno.com/apple-touch-icon-114x114-precomposed.png)
-Holdno:vue-upload
-===================
+# Holdno:vue-upload
+
 </br>
 这是一个 [vue2](https://cn.vuejs.org/) 图片上传组件<br />
 你可以在你的 vue**2** 项目中使用它上传图片到你的服务器中<br />
@@ -143,5 +143,5 @@ Demo show
 
 Demo view
 --------------
-[集合云活动发布页图片上传](https://www.jihe.pro/?#/create) </br>
+[集合云活动发布页图片上传](https://www.jihe.pro/?#/create)
 
