@@ -5,7 +5,7 @@ Holdno:vue-upload
 这是一个 [vue2](https://cn.vuejs.org/) 图片上传组件<br />
 你可以在你的 vue**2** 项目中使用它上传图片到你的服务器中<br />
 <br />
->**plupload特点:**<br />
+> **plupload特点:**<br />
 > - 支持多图上传<br />
 > - 异步上传<br />
 > - 强大的回调方法<br />
@@ -17,7 +17,6 @@ Holdno:vue-upload
 ``` html
 <holdno-upload></holdno-upload>
 <script>
-// get vue-upload-qiniu component
 import holdnoUpload from '../../components/holdnoUpload2'
 </script>
 ```
@@ -28,13 +27,13 @@ import holdnoUpload from '../../components/holdnoUpload2'
 vue upload component by Plupload<br />
 -------------
 <br />
->**依赖模块:**<br />
+> **依赖模块:**<br />
 > - npm<br />
 > - webpack<br />
 > - vue.js<br />
 > - Plupload<br />
 
->**需要在index.html中引入:**<br />
+> **需要在index.html中引入:**<br />
 > - http://cdn.staticfile.org/Plupload/2.1.1/plupload.full.min.js<br />
 
 
@@ -48,7 +47,6 @@ vi 项目目录/build/webpack.base.conf.js<br />
 ``` javascript
 let webpackConfig = {
   externals: {
-    "Qiniu": "Qiniu",
     "plupload": "plupload"
   }
 }
@@ -92,8 +90,8 @@ domain: String // 接收图片上传的url<br />
   <div>
     <holdno-upload 
       title="图片上传" 
-      :picOption="picOption" 
-      :getFiles="getFiles"
+      @picOption="picOption" 
+      @getFiles="getFiles"
       :overMax="overMax"
       :max="9"
       domain="url"
@@ -145,5 +143,5 @@ Demo show
 
 Demo view
 --------------
-This project still under development </br>
-When it is completed you can open it here.
+[集合云活动发布页图片上传](https://www.jihe.pro/?#/create) </br>
+
