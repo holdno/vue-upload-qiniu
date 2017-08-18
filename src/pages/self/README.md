@@ -98,14 +98,14 @@ shape: String // 预览图形状 square:正方形 rectangle:长方形 (默认squ
   <div>
     <holdno-upload 
       title="图片上传" 
-      :picoption="picOption" 
-      :getfiles="getFiles" 
-      :overmax="overMax"
       :max="9"
       :files="files"
       domain="url"
       :auto="true"
       shape="square"
+      @picoption="picOption" 
+      @getfiles="getFiles" 
+      @overmax="overMax"
     ></holdno-upload>
   </div>
 </template>
