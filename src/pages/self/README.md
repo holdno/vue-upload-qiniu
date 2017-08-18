@@ -1,7 +1,9 @@
 ![holdno logo](https://img.holdno.com/apple-touch-icon-114x114-precomposed.png)
-Holdno:vue-upload-qiniu
+Holdno:vue-upload
 ===================
-注意：Vue上传组件</br>
+Vue上传组件  
+注意：本文档是基于webpack开发模式下使用vue-upload组件的说明  
+如果是外部引入vue的方式请参考DEMO(/src/pages/self/uploadToSelf.**html**)</br>
 </br>
 这是一个 [vue2](https://cn.vuejs.org/) 组件项目<br />
 你可以在你的 vue**2** 项目中使用它上传图片到你的 [Qiniu](https://www.qiniu.com/) 空间<br />
@@ -42,10 +44,10 @@ $ npm install webpack -g
 
 安装 vue<br />
 教程： [here](https://cn.vuejs.org/)<br />
+配置
+-------------
 
 ```
-配置<br />
--------------
 vi 项目目录/build/webpack.base.conf.js<br />
 ``` javascript
 let webpackConfig = {

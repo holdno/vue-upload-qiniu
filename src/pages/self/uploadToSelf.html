@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>上传组件demo</title>
+<script src="https://unpkg.com/vue"></script>
+</head>
+<style>
+.weui-cell {
+  padding: 10px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.weui-cell__bd {
+  flex: 1;
+}
+.weui-uploader__hd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding-bottom: 10px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 14px;
+}
+.weui-uploader__title {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  font-weight: bold;
+  font-size: 16px;
+}
+.weui-uploader__info {
+  color: #97a8be;
+}
+.weui-uploader__bd {
+  margin-bottom: -4px;
+  margin-right: -9px;
+  overflow: hidden;
+}
+.weui-uploader__file {
+  float: left;
+  margin-right: 9px;
+  margin-bottom: 9px;
+  position: relative;
+}
+.weui-uploader__file .fa {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: #f00;
+  cursor: pointer;
+}
+.weui-uploader__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-size: cover;
+  background-position: center center;
+}
+.weui-uploader__file_status {
+  position: relative;
+}
+.weui-uploader__file_status:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.weui-uploader__file-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #FFFFFF;
+}
+.weui-uploader__input-box {
+  float: left;
+  position: relative;
+  margin-right: 9px;
+  margin-bottom: 9px;
+  border: 1px solid #D9D9D9;
+}
+.weui-uploader__input-box:before,
+.weui-uploader__input-box:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #D9D9D9;
+}
+.weui-uploader__input-box:before {
+  width: 2px;
+  height: 39.5px;
+}
+.weui-uploader__input-box:after {
+  width: 39.5px;
+  height: 2px;
+}
+.weui-uploader__input-box:active {
+  border-color: #999999;
+}
+.weui-uploader__input-box:active:before,
+.weui-uploader__input-box:active:after {
+  background-color: #999999;
+}
+.weui-uploader__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.square {
+  width: 77px;
+  height: 77px;
+}
+.rectangle {
+  width: 130px;
+  height: 77px;
+}
+</style>
+<body>
+  <holdno-upload 
+    title="图片上传"
+    domain="填写图片上传后端接收的URL"
+    :files="files"
+    max="1"
+    :auto="true"
+    shape="square"
+    @picoption="picOption"
+    @getfiles="getFiles"
+    @overmax="overMax"
+  ></holdno-upload>
+</body>
+<script src="http://cdn.staticfile.org/Plupload/2.1.1/plupload.full.min.js"></script>
+<script>
+// 注册组件
+Vue.component('holdnoUpload', {
+  // 声明 props
+  props: ['title', 'domain', 'files', 'max', 'auto', 'shape'],
+  // 就像 data 一样，prop 可以用在模板内
+  // 同样也可以在 vm 实例中像“this.message”这样使用
+  template: `<div class="weui-cell">
+      <div class="weui-cell__bd">
+        <div class="weui-uploader">
+          <div class="weui-uploader__hd">
+            <div class="weui-uploader__title">
+              {{title}} <font color="#999">{{uploading}}</font>
+            </div>
+            <div class="weui-uploader__info">{{files.length}}{{max ? '/' + max : ''}}</div>
+          </div>
+          <div class="weui-uploader__bd">
+            <div class="weui-uploader__files" id="uploaderFiles">
+              <div v-for="(item, index) in files">
+                <div :class="{'weui-uploader__file': true, 'square': shape == 'square', 'rectangle': shape == 'rectangle'}" :index="index" :id="item">
+                  <div class="fa fa-minus-circle" @click="openPicOption(files, index)">删除</div>
+                  <div class="weui-uploader__img" :style="'background-Image:url(' + item + ')'" @click="showImg(index)"></div>
+                </div>
+              </div>
+            </div>
+            <div :class="{'weui-uploader__input-box': true, 'square': shape == 'square', 'rectangle': shape == 'rectangle'}" id="addShowLabel">
+              <div class="weui-uploader__input" id="pickfiles"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`,
+  data () {
+    return {
+      uploading: '', // uploading show text
+      inputId: '',
+      uploader: ''
+    }
+  },
+  mounted () {
+    console.log('created')
+    // 等待DOM渲染完成后执行
+    this.$nextTick(() => {
+      this.uploader = new plupload.Uploader({
+        browse_button : 'pickfiles', // 触发文件选择对话框的按钮，为那个元素id
+        container: 'addShowLabel', // 上传区域DOM ID，默认是browser_button的父元素，
+        url : this.domain, // 服务器端的上传页面地址
+        max_file_size: '10mb', // 上传文件的大小限制
+        max_retries: 3, // 上传失败后尝试重试的次数
+        filters : [ // 上传文件类型限制
+          {
+            title : "Image",
+            extensions : "jpg,jpeg,gif,png"
+          }
+        ]
+      })
+      // 添加文件后触发
+      this.uploader.bind('FilesAdded', (up, files) => {
+        if(files.length > this.max || files.length + this.files.length > this.max){
+          console.log('上传图片不能超过'+ this.max +'张')
+          this.$emit('overmax')
+          return false
+        }
+        for (let i in files) {
+          console.log('fileName:' + files[i].name)
+          console.log('fileSize:' + files[i].size)
+        }
+      })
+      // 文件上传进度
+      this.uploader.bind('UploadProgress', (up, file) => {
+        console.log('progress:' + file.percent + '%')
+        if(file.percent >= 0){
+          this.uploading = file.percent + '%'
+        }
+        if(file.percent == 100){
+          this.uploading = ''
+        }
+      })
+      // 每个文件上传成功回调
+      this.uploader.bind('FileUploaded', (up, file, info) => {
+        console.log(up)
+        console.log(file)
+        console.log(info)
+        // 在这里对服务器返回的信息进行处理
+        // info为服务器返回的信息
+        let url = window.JSON.parse(info.response).files[0].path
+        // 确保url被添加到files数组中界面才会显示已经上传的图片
+        this.files.push(url)
+      })
+      // 文件上传结束回调
+      this.uploader.bind('UploadComplete', (up, files) => {
+        console.log('uploadComplete')
+        console.log(files)
+        this.$emit('getfiles', this.files)
+        // this.getFiles(this.files)
+      })
+      this.uploader.init()
+      setTimeout(() => {
+        if(this.auto){
+            let dom = this.$el.querySelector('#addShowLabel input')
+            console.log(dom)
+            // 自动上传方法 如果不需要自动上传请注释掉下面这段 并在自己业务处调用this.uploader.start()
+            dom.addEventListener('change', () => {
+              setTimeout(() => {
+                this.uploader.start()
+              }, 20)
+            }, false)
+        }
+      }, 20)
+    })
+  },
+  methods: {
+    openPicOption (files, index) {
+      this.$emit('picoption', files, index)
+    },
+    showImg (index) {
+      // todo 图片全屏预览
+    }
+  }
+})
+
+var Vue = new Vue({
+  el : '#app',
+  data () {
+      return {
+          files: []
+      }
+  },
+  methods : {
+    // click pictures call back
+      picOption (files, index) {
+        // 删除图片
+        this.files.splice(index, 1)
+      },
+      // get uploaded img url (files: array)
+      getFiles (files) {
+        console.log(files)
+        this.files = files
+      },
+      overMax () {
+        // 提醒用户超出上传上限
+        alert('最多上传1张图片')
+      }
+  },
+})
+
+
+</script>
+</html>
