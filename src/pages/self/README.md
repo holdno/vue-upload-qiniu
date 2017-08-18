@@ -18,7 +18,7 @@ import holdnoUpload from '../../components/holdnoUpload'
 组件文件在  
 /src/pages/self/uploadToSelf.vue  
   
-vue upload component by plupload  
+基于 Plupload
 -------------
 
 >**依赖模块:**<br />
