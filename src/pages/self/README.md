@@ -16,10 +16,10 @@ Vue上传组件
 import holdnoUpload from '../../components/holdnoUpload'
 </script>
 ```
-组件文件在<br />
-/src/pages/self/uploadToSelf.vue<br />
-<br />
-vue upload component by plupload<br />
+组件文件在  
+/src/pages/self/uploadToSelf.vue  
+  
+vue upload component by plupload  
 -------------
 
 >**依赖模块:**<br />
@@ -36,14 +36,15 @@ vue upload component by plupload<br />
 -------------
 安装 npm<br />
 你可以在百度或google搜索相关教程： [Baidu](https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=install%20npm&oq=just%2520for%2520funny&rsv_pq=d35ad5d90007d336&rsv_t=3aeei0aEuSoNmNACToU2ZnliBnJfW6lJFE%2FmSw6IASGyDY3I6tkm9C2%2BxBs&rqlang=cn&rsv_enter=0&inputT=3708&rsv_sug3=194&rsv_sug1=155&rsv_sug7=100&rsv_sug2=0&rsv_sug4=12908) 或 [Google](https://www.google.com.au/search?q=install+npm&rlz=1CDGOYI_enAU718AU718&oq=install+npm&aqs=chrome..69i57j0l3.11504j0j8&hl=en-GB&sourceid=chrome-mobile&ie=UTF-8) :)<br />
-<br />
-安装 webpack<br />
+  
+安装 webpack  
 ``` shell
 $ npm install webpack -g
 ```
 
-安装 vue<br />
-教程： [here](https://cn.vuejs.org/)<br />
+安装 vue  
+教程： [here](https://cn.vuejs.org/)  
+
 配置
 -------------
 
