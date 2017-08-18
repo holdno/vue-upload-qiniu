@@ -19,7 +19,7 @@ import holdnoUpload from '../../components/holdnoUpload'
 <br />
 vue upload component by plupload<br />
 -------------
-<br />
+
 >**依赖模块:**<br />
 > - npm<br />
 > - webpack<br />
