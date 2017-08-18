@@ -72,8 +72,6 @@ vue cli -> root/index.html
     <meta name="apple-mobile-web-app-status-bar-style" content="white">
     <link rel="apple-touch-icon-precomposed" href="/static/img/apple-touch-icon-114x114-precomposed.png">
     <title>集合云</title>
-    <link rel="stylesheet" href="/static/css/font-awesome-4.5.0/css/font-awesome.css">
-    <link rel="stylesheet" href="/static/css/holdno.css">
   </head>
   <body>
     <div id="app"></div>
@@ -83,7 +81,7 @@ vue cli -> root/index.html
   </body>
 </html>
 ```
-Demo code<br />
+示例代码<br />
 -------------
 这些配置项都需要填写<br />
 <br />
@@ -149,13 +147,12 @@ export default {
 </style>
 ```
 
-Demo show
+示例截图
 --------------
 ![demo pic](https://img.holdno.com/F0DE709B-8D58-418A-AE7E-A2C316A2E934.png)</br>
 </br>
 ![demo pic](https://img.holdno.com/BD68A2E9-460F-4E1C-96D2-86B36FB413E4.png)
 
-Demo view
+示例体验
 --------------
-This project still under development </br>
-When it is completed you can open it here.
+![demo pic](https://img.holdno.com/github/1503029051.png) </br>
