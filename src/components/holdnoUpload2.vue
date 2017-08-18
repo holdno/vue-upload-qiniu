@@ -12,18 +12,14 @@
           <div class="weui-uploader__bd">
             <div class="weui-uploader__files" id="uploaderFiles">
               <div v-for="(item, index) in files">
-                <div class="weui-uploader__file" @click="openPicOption(files, index)" :index="index" :id="item">
-                  <img class="weui-uploader__img" :src="item"/>
+                <div :class="{'weui-uploader__file': true, 'square': shape == 'square', 'rectangle': shape == 'rectangle'}" :index="index" :id="item">
+                  <div class="fa fa-minus-circle" @click="openPicOption(files, index)">删除</div>
+                  <div class="weui-uploader__img" :style="'background-Image:url(' + item + ')'" @click="showImg(index)"></div>
                 </div>
               </div>
             </div>
-            <div id="container">
-              <span id="pickfiles"></span>
-            </div>
-            <div class="weui-uploader__input-box">
-              <label :for="inputId" id="addShowLabel" @click="uploadFiles(inputId)">
-                <div class="weui-uploader__input"></div>
-              </label>
+            <div :class="{'weui-uploader__input-box': true, 'square': shape == 'square', 'rectangle': shape == 'rectangle'}" id="addShowLabel">
+              <div class="weui-uploader__input" id="pickfiles"></div>
             </div>
           </div>
         </div>
@@ -39,12 +35,20 @@ export default {
   name: 'holdnoUpload2',
   props: {
     title: String, // upload components title
-    picOption: String, // click picture call back
-    getFiles: String, // get uploaded img url (return array)
-    overMax: String,
+    picoption: String, // click picture call back
+    getfiles: String, // get uploaded img url (return array)
+    overmax: String,
     domain: String, // qiniu space bind url
     files: Array,
-    max: Number
+    max: Number,
+    auto: {
+      type: Boolean,
+      value: true
+    }
+    shape: {
+      type: String,
+      default: 'square'
+    }
   },
   data () {
     return {
@@ -75,7 +79,7 @@ export default {
       this.uploader.bind('FilesAdded', (up, files) => {
         if(files.length > this.max || files.length + this.files.length > this.max){
           console.log('上传图片不能超过'+ this.max +'张')
-          this.overMax()
+          this.$emit(this.overmax)
           return false
         }
         for (let i in files) {
@@ -108,20 +112,22 @@ export default {
       this.uploader.bind('UploadComplete', (up, files) => {
         console.log('uploadComplete')
         console.log(files)
-        this.$emit(this.getFiles, this.files)
+        this.$emit(this.getfiles, this.files)
         // this.getFiles(this.files)
       })
       this.uploader.init()
       this.$nextTick(() => {
         setTimeout(() => {
-          let dom = this.$el.querySelector('#container input')
-          this.inputId = dom.getAttribute('id')
-          // 自动上传方法 如果不需要自动上传请注释掉下面这段 并在自己业务处调用this.uploader.start()
-          dom.addEventListener('change', () => {
-            setTimeout(() => {
-              this.uploader.start()
-            }, 20)
-          }, false)
+          if(this.auto){
+            let dom = this.$el.querySelector('#addShowLabel input')
+            this.inputId = dom.getAttribute('id')
+            // 自动上传方法 如果不需要自动上传请注释掉下面这段 并在自己业务处调用this.uploader.start()
+            dom.addEventListener('change', () => {
+              setTimeout(() => {
+                this.uploader.start()
+              }, 20)
+            }, false)
+          }
         }, 20)
       })
     })
@@ -139,7 +145,7 @@ export default {
 
 <style>
 .weui-cell {
-  padding: 10px 15px;
+  padding: 10px 0;
   position: relative;
   display: flex;
   align-items: center;
@@ -155,14 +161,17 @@ export default {
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
+  font-size: 14px;
 }
 .weui-uploader__title {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
+  font-weight: bold;
+  font-size: 16px;
 }
 .weui-uploader__info {
-  color: #B2B2B2;
+  color: #97a8be;
 }
 .weui-uploader__bd {
   margin-bottom: -4px;
@@ -173,11 +182,21 @@ export default {
   float: left;
   margin-right: 9px;
   margin-bottom: 9px;
+  position: relative;
+}
+.weui-uploader__file .fa {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: #f00;
+  cursor: pointer;
 }
 .weui-uploader__img {
+  width: 100%;
+  height: 100%;
   display: block;
-  width: 79px;
-  height: 79px;
+  background-size: cover;
+  background-position: center center;
 }
 .weui-uploader__file_status {
   position: relative;
@@ -204,8 +223,6 @@ export default {
   position: relative;
   margin-right: 9px;
   margin-bottom: 9px;
-  width: 77px;
-  height: 77px;
   border: 1px solid #D9D9D9;
 }
 .weui-uploader__input-box:before,
@@ -235,11 +252,18 @@ export default {
 }
 .weui-uploader__input {
   position: absolute;
-  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   opacity: 0;
+}
+.square {
+  width: 77px;
+  height: 77px;
+}
+.rectangle {
+  width: 130px;
+  height: 77px;
 }
 </style>

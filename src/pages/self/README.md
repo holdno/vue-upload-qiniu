@@ -85,16 +85,20 @@ getFiles: String, // 图片上传完成后将图片信息返回的方法<br />
 overMax: String // 超出上传数量回调方法<br />
 max: Number // 允许上传的图片数量<br />
 domain: String // 接收图片上传的url<br />
+auto: Boolean // 是否自动上传(默认开启)<br/>
+shape: String // 预览图形状 square:正方形 rectangle:长方形 (默认square)
 ``` html
 <template>
   <div>
     <holdno-upload 
       title="图片上传" 
-      @picOption="picOption" 
-      @getFiles="getFiles"
-      @overMax="overMax"
+      @picoption="picOption" 
+      @getfiles="getFiles"
+      @overmax="overMax"
       :max="9"
       domain="url"
+      :auto="true"
+      shape="square"
     ></holdno-upload>
   </div>
 </template>
