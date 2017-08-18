@@ -3,8 +3,8 @@ Holdno:vue-upload
 ===================
 Vue上传组件  
 注意：本文档是基于webpack开发模式下使用vue-upload组件的说明  
-如果是外部引入vue的方式请参考DEMO(/src/pages/self/uploadToSelf.**html**)</br>
-</br>
+如果是外部引入vue的方式请参考[DEMO](https://github.com/holdno/vue-upload-qiniu/blob/master/src/pages/self/uploadToSelf.html)  
+  
 这是一个 [vue2](https://cn.vuejs.org/) 组件项目<br />
 你可以在你的 vue**2** 项目中使用它上传图片到你的 [Qiniu](https://www.qiniu.com/) 空间<br />
 <br />
