@@ -6,7 +6,6 @@ Vue上传组件
 如果是外部引入vue的方式请参考[DEMO](https://github.com/holdno/vue-upload-qiniu/blob/master/src/pages/self/uploadToSelf.html)  
   
 这是一个 [vue2](https://cn.vuejs.org/) 组件项目<br />
-你可以在你的 vue**2** 项目中使用它上传图片到你的 [Qiniu](https://www.qiniu.com/) 空间<br />
 <br />
 你可以复制下面代码到你的vue项目中,前提是你要先把组件文件下载下来
 ``` html
